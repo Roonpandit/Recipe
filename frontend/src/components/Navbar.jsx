@@ -16,7 +16,7 @@ const Navbar = ({ user, onLogout }) => {
               Home
             </Link>
             <Link to="/saved-recipes" className="nav-link">
-              Saved Recipes
+              Saved
             </Link>
             <Link to="/profile" className="nav-link">
               Profile

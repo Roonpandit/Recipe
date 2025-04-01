@@ -17,7 +17,7 @@ const Dashboard = () => {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [pagination, setPagination] = useState({
     offset: 0,
-    number: 10,
+    number: 12,
     totalResults: 0,
   });
 
@@ -30,7 +30,7 @@ const Dashboard = () => {
     setLoading(true);
     setError("");
     try {
-      const randomRecipes = await getRandomRecipes({ number: 10 });
+      const randomRecipes = await getRandomRecipes({ number: 12 });
       setRecipes(randomRecipes);
       setSearchPerformed(false);
     } catch (error) {
