@@ -36,6 +36,54 @@ A full-stack web application that allows users to search for recipes, view detai
 - MongoDB database
 - Spoonacular API key
 
+### Installation
+
+1. Clone the repository
+```
+git clone https://github.com/your-username/recipe-app.git
+cd recipe-app
+```
+
+2. Install dependencies
+```
+npm run setup
+```
+
+4. Run the application
+```
+# Start backend
+npm run start:backend
+
+# In a separate terminal, start frontend
+npm run start:frontend
+```
+
+5. Open your browser and navigate to `http://localhost:3000`
+
+## Project Structure
+
+```
+├── backend/               # Backend source code
+│   ├── src/
+│   │   ├── controllers/   # API controllers
+│   │   ├── middleware/    # Express middleware
+│   │   ├── models/        # Mongoose models
+│   │   └── routes/        # API routes
+│   ├── .env               # Environment variables
+│   └── server.js          # Main server file
+│
+├── frontend/              # Frontend source code
+│   ├── src/
+│   │   ├── components/    # React components
+│   │   ├── pages/         # Page components
+│   │   ├── styles/        # CSS styles
+│   │   └── utils/         # Utility functions
+│   ├── .env               # Frontend environment variables
+│   └── vite.config.js     # Vite configuration
+│
+└── package.json           # Root package.json with scripts
+```
+
 ## Features
 
 1. **User Authentication**
