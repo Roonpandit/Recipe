@@ -1,5 +1,4 @@
-/* Draggable Recipe Card styles */
-.draggable-recipe-card {
+.drag .draggable-recipe-card {
   display: flex;
   background-color: white;
   border-radius: 8px;
@@ -11,16 +10,16 @@
   position: relative;
 }
 
-.draggable-recipe-card:hover {
+.drag .draggable-recipe-card:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.draggable-recipe-card:active {
+.drag .draggable-recipe-card:active {
   cursor: grabbing;
   background-color: rgba(0, 0, 0, 0.02);
 }
 
-.drag-handle {
+.drag .drag-handle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,37 +28,37 @@
   cursor: grab;
 }
 
-.drag-icon {
+.drag .drag-icon {
   font-size: 1.5rem;
   color: var(--light-text);
 }
 
-.draggable-recipe-card .recipe-image {
+.drag .draggable-recipe-card .recipe-image {
   width: 150px;
   height: 150px;
   flex-shrink: 0;
 }
 
-.draggable-recipe-card .recipe-image img {
+.drag .draggable-recipe-card .recipe-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.draggable-recipe-card .recipe-content {
+.drag .draggable-recipe-card .recipe-content {
   padding: 1rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
-.draggable-recipe-card .recipe-title {
+.drag .draggable-recipe-card .recipe-title {
   font-size: 1.2rem;
   margin-bottom: 0.75rem;
   color: var(--text-color);
 }
 
-.draggable-recipe-card .recipe-summary {
+.drag .draggable-recipe-card .recipe-summary {
   color: var(--light-text);
   font-size: 0.9rem;
   line-height: 1.5;
@@ -67,56 +66,57 @@
   flex-grow: 1;
 }
 
-.draggable-recipe-card .recipe-actions {
+.drag .draggable-recipe-card .recipe-actions {
   display: flex;
   justify-content: flex-start;
   gap: 1rem;
   margin-top: auto;
 }
 
-.draggable-recipe-card .view-btn {
+.drag .draggable-recipe-card .view-btn {
   background-color: transparent;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
-  padding: 0.5rem 1rem;
+  padding: 2px 10px;
+  text-align: center;
   border-radius: 4px;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
-.draggable-recipe-card .view-btn:hover {
+.drag .draggable-recipe-card .view-btn:hover {
   background-color: var(--primary-color);
   color: white;
 }
 
-.draggable-recipe-card .remove-btn {
+.drag .draggable-recipe-card .remove-btn {
   background-color: transparent;
   border: 1px solid var(--error-color);
   color: var(--error-color);
-  padding: 0.5rem 1rem;
+  padding: 2px 10px;  
   border-radius: 4px;
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.2s ease;
 }
 
-.draggable-recipe-card .remove-btn:hover {
+.drag .draggable-recipe-card .remove-btn:hover {
   background-color: var(--error-color);
   color: white;
 }
 
 @media (max-width: 768px) {
-  .draggable-recipe-card {
+  .drag .draggable-recipe-card {
     flex-direction: column;
   }
-  
-  .draggable-recipe-card .recipe-image {
+
+  .drag .draggable-recipe-card .recipe-image {
     width: 100%;
     height: 200px;
   }
-  
-  .drag-handle {
+
+  .drag .drag-handle {
     position: absolute;
     top: 0;
     right: 0;
@@ -125,9 +125,9 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
   }
-  
-  .drag-icon {
+
+  .drag .drag-icon {
     color: white;
     font-size: 1.2rem;
   }
-} 
+}

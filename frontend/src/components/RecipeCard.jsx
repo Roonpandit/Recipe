@@ -1,12 +1,11 @@
-import { Link } from 'react-router-dom';
-import '../styles/RecipeCard.css';
+import { Link } from "react-router-dom";
+import "../styles/RecipeCard.css";
 
 const RecipeCard = ({ recipe, onSave, isSaved }) => {
   const { id, title, image, summary } = recipe;
 
-  // Create a clean summary by removing HTML tags
   const cleanSummary = summary ? summary.replace(/<\/?[^>]+(>|$)/g, "") : "";
-  
+
   return (
     <div className="recipe-card">
       <div className="recipe-image">
@@ -15,19 +14,21 @@ const RecipeCard = ({ recipe, onSave, isSaved }) => {
       <div className="recipe-content">
         <h3 className="recipe-title">{title}</h3>
         <p className="recipe-summary">
-          {cleanSummary.length > 150 
-            ? `${cleanSummary.substring(0, 150)}...` 
+          {cleanSummary.length > 150
+            ? `${cleanSummary.substring(0, 150)}...`
             : cleanSummary}
         </p>
         <div className="recipe-actions">
-          <Link to={`/recipe/${id}`} className="view-btn">View Details</Link>
+          <Link to={`/recipe/${id}`} className="view-btn">
+            View Details
+          </Link>
           {onSave && (
-            <button 
-              className={`save-btn ${isSaved ? 'saved' : ''}`}
-              onClick={() => onSave(recipe)} 
+            <button
+              className={`save-btn ${isSaved ? "saved" : ""}`}
+              onClick={() => onSave(recipe)}
               disabled={isSaved}
             >
-              {isSaved ? 'Saved' : 'Save Recipe'}
+              {isSaved ? "Saved" : "Save Recipe"}
             </button>
           )}
         </div>
@@ -36,4 +37,4 @@ const RecipeCard = ({ recipe, onSave, isSaved }) => {
   );
 };
 
-export default RecipeCard; 
+export default RecipeCard;

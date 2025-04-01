@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -10,7 +9,6 @@ const api = axios.create({
   }
 });
 
-// Add request interceptor for adding auth token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -24,11 +22,9 @@ api.interceptors.request.use(
   }
 );
 
-// Add response interceptor for handling token expiration
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Don't redirect for login/register endpoints when they return 401
     const isAuthEndpoint = 
       error.config && 
       (error.config.url.includes('/auth/login') || 
@@ -43,7 +39,6 @@ api.interceptors.response.use(
   }
 );
 
-// Authentication
 export const registerUser = async (userData) => {
   const response = await api.post('/auth/register', userData);
   return response.data;
@@ -86,7 +81,6 @@ export const getUser = async () => {
   }
 };
 
-// Recipes
 export const searchRecipes = async (params) => {
   const response = await api.get('/recipes/search', { params });
   return response.data;
@@ -102,7 +96,6 @@ export const getRandomRecipes = async (params) => {
   return response.data.recipes;
 };
 
-// User Recipes
 export const getSavedRecipes = async () => {
   const response = await api.get('/users/recipes');
   return response.data.savedRecipes;
@@ -120,12 +113,10 @@ export const removeRecipe = async (recipeId) => {
 
 export const updateRecipeOrder = async (recipes) => {
   try {
-    // Validate recipes array
     if (!recipes || !Array.isArray(recipes) || recipes.length === 0) {
       throw new Error('Invalid recipes data for reordering');
     }
     
-    // Ensure all recipes have recipeId and order
     const validRecipes = recipes.filter(r => r.recipeId && r.order !== undefined);
     
     if (validRecipes.length !== recipes.length) {
@@ -150,7 +141,6 @@ export const updateRecipeOrder = async (recipes) => {
   }
 };
 
-// Update user profile
 export const updateProfile = async (profileData) => {
   try {
     const response = await api.put('/users/profile', profileData);

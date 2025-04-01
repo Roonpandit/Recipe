@@ -1,16 +1,15 @@
-/* Saved Recipes styles */
 .saved-recipes {
   padding: 0 1rem;
 }
 
-.saved-recipes h1 {
+.saved-recipes .saved-recipes h1 {
   margin-bottom: 2rem;
   color: var(--text-color);
   font-size: 2rem;
   text-align: center;
 }
 
-.drag-instructions {
+.saved-recipes .drag-instructions {
   background-color: var(--background-color);
   padding: 1rem;
   border-radius: 8px;
@@ -20,7 +19,7 @@
   border: 1px dashed var(--border-color);
 }
 
-.saving-message {
+.saved-recipes .saving-message {
   background-color: rgba(46, 204, 113, 0.1);
   color: var(--success-color);
   padding: 0.75rem;
@@ -30,13 +29,13 @@
   font-weight: 500;
 }
 
-.saved-recipes-list {
+.saved-recipes .saved-recipes-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.no-saved-recipes {
+.saved-recipes .no-saved-recipes {
   text-align: center;
   padding: 3rem;
   background-color: white;
@@ -45,32 +44,31 @@
   margin-top: 2rem;
 }
 
-.no-saved-recipes p {
+.saved-recipes .no-saved-recipes p {
   color: var(--light-text);
   margin-bottom: 1rem;
 }
 
-/* Drag effect styles */
-.draggable-recipe-card.dragging {
+.saved-recipes .draggable-recipe-card.dragging {
   opacity: 0.5;
   background-color: rgba(0, 0, 0, 0.02);
 }
 
-.draggable-recipe-card.drop-target {
+.saved-recipes .draggable-recipe-card.drop-target {
   transform: scale(1.02);
   border: 2px dashed var(--primary-color);
 }
 
 @media (max-width: 768px) {
-  .saved-recipes h1 {
+  .saved-recipes .saved-recipes h1 {
     font-size: 1.5rem;
   }
-  
-  .drag-instructions {
+
+  .saved-recipes .drag-instructions {
     font-size: 0.9rem;
   }
-  
-  .no-saved-recipes {
+
+  .saved-recipes .no-saved-recipes {
     padding: 2rem 1rem;
   }
-} 
+}

@@ -1,40 +1,79 @@
-import { useState } from 'react';
-import '../styles/SearchForm.css';
+import { useState } from "react";
+import "../styles/SearchForm.css";
 
 const cuisineOptions = [
-  'African', 'American', 'British', 'Cajun', 'Caribbean', 
-  'Chinese', 'Eastern European', 'European', 'French', 'German', 
-  'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 
-  'Korean', 'Latin American', 'Mediterranean', 'Mexican', 
-  'Middle Eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 
-  'Vietnamese'
+  "African",
+  "American",
+  "British",
+  "Cajun",
+  "Caribbean",
+  "Chinese",
+  "Eastern European",
+  "European",
+  "French",
+  "German",
+  "Greek",
+  "Indian",
+  "Irish",
+  "Italian",
+  "Japanese",
+  "Jewish",
+  "Korean",
+  "Latin American",
+  "Mediterranean",
+  "Mexican",
+  "Middle Eastern",
+  "Nordic",
+  "Southern",
+  "Spanish",
+  "Thai",
+  "Vietnamese",
 ];
 
 const dietOptions = [
-  'Gluten Free', 'Ketogenic', 'Vegetarian', 'Lacto-Vegetarian',
-  'Ovo-Vegetarian', 'Vegan', 'Pescetarian', 'Paleo', 'Primal',
-  'Low FODMAP', 'Whole30'
+  "Gluten Free",
+  "Ketogenic",
+  "Vegetarian",
+  "Lacto-Vegetarian",
+  "Ovo-Vegetarian",
+  "Vegan",
+  "Pescetarian",
+  "Paleo",
+  "Primal",
+  "Low FODMAP",
+  "Whole30",
 ];
 
 const typeOptions = [
-  'main course', 'side dish', 'dessert', 'appetizer',
-  'salad', 'bread', 'breakfast', 'soup', 'beverage',
-  'sauce', 'marinade', 'fingerfood', 'snack', 'drink'
+  "main course",
+  "side dish",
+  "dessert",
+  "appetizer",
+  "salad",
+  "bread",
+  "breakfast",
+  "soup",
+  "beverage",
+  "sauce",
+  "marinade",
+  "fingerfood",
+  "snack",
+  "drink",
 ];
 
 const SearchForm = ({ onSearch }) => {
   const [searchParams, setSearchParams] = useState({
-    query: '',
-    cuisine: '',
-    diet: '',
-    type: ''
+    query: "",
+    cuisine: "",
+    diet: "",
+    type: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setSearchParams(prev => ({
+    setSearchParams((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -45,12 +84,12 @@ const SearchForm = ({ onSearch }) => {
 
   const handleClear = () => {
     setSearchParams({
-      query: '',
-      cuisine: '',
-      diet: '',
-      type: ''
+      query: "",
+      cuisine: "",
+      diet: "",
+      type: "",
     });
-    onSearch({ query: '' });
+    onSearch({ query: "" });
   };
 
   return (
@@ -66,9 +105,11 @@ const SearchForm = ({ onSearch }) => {
             placeholder="Search recipes..."
             className="search-input"
           />
-          <button type="submit" className="search-btn">Search</button>
+          <button type="submit" className="search-btn">
+            Search
+          </button>
         </div>
-        
+
         <div className="search-filters">
           <div className="filter-group">
             <label htmlFor="cuisine">Cuisine:</label>
@@ -79,14 +120,14 @@ const SearchForm = ({ onSearch }) => {
               onChange={handleChange}
             >
               <option value="">Any Cuisine</option>
-              {cuisineOptions.map(cuisine => (
+              {cuisineOptions.map((cuisine) => (
                 <option key={cuisine} value={cuisine.toLowerCase()}>
                   {cuisine}
                 </option>
               ))}
             </select>
           </div>
-          
+
           <div className="filter-group">
             <label htmlFor="diet">Diet:</label>
             <select
@@ -96,14 +137,14 @@ const SearchForm = ({ onSearch }) => {
               onChange={handleChange}
             >
               <option value="">Any Diet</option>
-              {dietOptions.map(diet => (
+              {dietOptions.map((diet) => (
                 <option key={diet} value={diet.toLowerCase()}>
                   {diet}
                 </option>
               ))}
             </select>
           </div>
-          
+
           <div className="filter-group">
             <label htmlFor="type">Type:</label>
             <select
@@ -113,19 +154,15 @@ const SearchForm = ({ onSearch }) => {
               onChange={handleChange}
             >
               <option value="">Any Type</option>
-              {typeOptions.map(type => (
+              {typeOptions.map((type) => (
                 <option key={type} value={type}>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </option>
               ))}
             </select>
           </div>
-          
-          <button 
-            type="button" 
-            className="clear-btn"
-            onClick={handleClear}
-          >
+
+          <button type="button" className="clear-btn" onClick={handleClear}>
             Clear Filters
           </button>
         </div>
@@ -134,4 +171,4 @@ const SearchForm = ({ onSearch }) => {
   );
 };
 
-export default SearchForm; 
+export default SearchForm;
