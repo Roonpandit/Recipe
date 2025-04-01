@@ -1,0 +1,124 @@
+/* Auth styles for login and registration */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: calc(100vh - 70px);
+}
+
+.auth-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 450px;
+  padding: 2rem;
+}
+
+.auth-form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.auth-error {
+  color: #e74c3c;
+  background-color: #fadbd8;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-left: 4px solid #e74c3c;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-success {
+  color: #27ae60;
+  background-color: #d5f5e3;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-left: 4px solid #27ae60;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.auth-button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.auth-button:hover {
+  background-color: var(--primary-dark);
+}
+
+.auth-button:disabled {
+  background-color: var(--lighter-text);
+  cursor: not-allowed;
+}
+
+.auth-redirect {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--light-text);
+}
+
+.auth-redirect a {
+  color: var(--primary-color);
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.auth-redirect a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    padding: 1rem;
+  }
+  
+  .auth-form-container {
+    padding: 1.5rem;
+  }
+} 

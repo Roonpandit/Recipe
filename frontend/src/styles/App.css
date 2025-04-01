@@ -1,0 +1,92 @@
+/* App.css - Main application styles */
+
+:root {
+  --primary-color: #e67e22;
+  --primary-dark: #d35400;
+  --secondary-color: #2ecc71;
+  --text-color: #333;
+  --light-text: #666;
+  --lighter-text: #999;
+  --background-color: #f9f9f9;
+  --card-background: #fff;
+  --border-color: #eee;
+  --error-color: #e74c3c;
+  --success-color: #27ae60;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+ul, ol {
+  list-style-position: inside;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-size: 18px;
+  color: var(--light-text);
+}
+
+.error-message {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: var(--error-color);
+  padding: 15px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 15px;
+  }
+} 

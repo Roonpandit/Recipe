@@ -1,0 +1,127 @@
+/* Search Form styles */
+.search-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-form-container h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.search-main {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-group label {
+  font-weight: 500;
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
+.filter-group select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.clear-btn {
+  background-color: transparent;
+  border: 1px solid var(--light-text);
+  color: var(--light-text);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.clear-btn:hover {
+  background-color: var(--light-text);
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .search-form-container {
+    padding: 1.5rem;
+  }
+  
+  .search-form-container h2 {
+    font-size: 1.5rem;
+  }
+  
+  .search-main {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    min-width: 100%;
+  }
+  
+  .clear-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+} 

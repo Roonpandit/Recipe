@@ -1,0 +1,70 @@
+/* Dashboard styles */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.recipes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.recipes-container h2 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.no-recipes {
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: white;
+  border-radius: 8px;
+  color: var(--light-text);
+  box-shadow: var(--shadow);
+}
+
+.no-recipes p {
+  margin-bottom: 0.5rem;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.load-more-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.load-more-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.load-more-btn:disabled {
+  background-color: var(--lighter-text);
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+} 
