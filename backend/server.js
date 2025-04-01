@@ -13,7 +13,12 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGINS.split(","),
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Request logging middleware
