@@ -62,46 +62,43 @@ const typeOptions = [
 ];
 
 const SearchForm = ({ onSearch }) => {
-  const [searchParams, setSearchParams] = useState({
-    query: "",
-    cuisine: "",
-    diet: "",
-    type: "",
-  });
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({ cuisine: "", diet: "", type: "" });
+  const [searchResults, setSearchResults] = useState(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSearchParams((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleQueryChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSearch = (e) => {
     e.preventDefault();
-    onSearch(searchParams);
+    onSearch({ query: searchQuery });
+  };
+
+  const handleApplyFilters = () => {
+    onSearch({ query: searchQuery, ...filters });
   };
 
   const handleClear = () => {
-    setSearchParams({
-      query: "",
-      cuisine: "",
-      diet: "",
-      type: "",
-    });
-    onSearch({ query: "" });
+    setFilters({ cuisine: "", diet: "", type: "" });
+    onSearch({ query: searchQuery, cuisine: "", diet: "", type: "" });
   };
 
   return (
     <div className="search-form-container">
       <h2>Find a Recipe</h2>
-      <form className="search-form" onSubmit={handleSubmit}>
+      <form className="search-form" onSubmit={handleSearch}>
         <div className="search-main">
           <input
             type="text"
             name="query"
-            value={searchParams.query}
-            onChange={handleChange}
+            value={searchQuery}
+            onChange={handleQueryChange}
             placeholder="Search recipes..."
             className="search-input"
           />
@@ -116,8 +113,8 @@ const SearchForm = ({ onSearch }) => {
             <select
               id="cuisine"
               name="cuisine"
-              value={searchParams.cuisine}
-              onChange={handleChange}
+              value={filters.cuisine}
+              onChange={handleFilterChange}
             >
               <option value="">Any Cuisine</option>
               {cuisineOptions.map((cuisine) => (
@@ -133,8 +130,8 @@ const SearchForm = ({ onSearch }) => {
             <select
               id="diet"
               name="diet"
-              value={searchParams.diet}
-              onChange={handleChange}
+              value={filters.diet}
+              onChange={handleFilterChange}
             >
               <option value="">Any Diet</option>
               {dietOptions.map((diet) => (
@@ -150,8 +147,8 @@ const SearchForm = ({ onSearch }) => {
             <select
               id="type"
               name="type"
-              value={searchParams.type}
-              onChange={handleChange}
+              value={filters.type}
+              onChange={handleFilterChange}
             >
               <option value="">Any Type</option>
               {typeOptions.map((type) => (
@@ -162,6 +159,13 @@ const SearchForm = ({ onSearch }) => {
             </select>
           </div>
 
+          <button
+            type="button"
+            className="clear-btn"
+            onClick={handleApplyFilters}
+          >
+            Apply Filters
+          </button>
           <button type="button" className="clear-btn" onClick={handleClear}>
             Clear Filters
           </button>
