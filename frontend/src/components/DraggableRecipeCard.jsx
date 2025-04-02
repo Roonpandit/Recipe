@@ -13,6 +13,7 @@ const DraggableRecipeCard = ({
   const { recipeId, title, image, summary } = recipe;
   const dragRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const cleanSummary = summary ? summary.replace(/<\/?[^>]+(>|$)/g, "") : "";
 
@@ -52,7 +53,13 @@ const DraggableRecipeCard = ({
           <span className="drag-icon">☰</span>
         </div>
         <div className="recipe-image">
-          <img src={image} alt={title} />
+          {isLoading && <div className="skeleton-loader"></div>}
+          <img
+            src={image}
+            alt={title}
+            onLoad={() => setIsLoading(false)}
+            style={{ display: isLoading ? "none" : "block" }}
+          />
         </div>
         <div className="recipe-content">
           <h3 className="recipe-title">{title}</h3>

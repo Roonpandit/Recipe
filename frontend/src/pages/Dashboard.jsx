@@ -132,7 +132,15 @@ const Dashboard = () => {
         {error && <div className="error-message">{error}</div>}
 
         {loading && recipes.length === 0 ? (
-          <div className="loading">Loading recipes...</div>
+          <div className="recipe-grid">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="skeleton-recipe-card">
+                <div className="skeleton-image"></div>
+                <div className="skeleton-title"></div>
+                <div className="skeleton-button"></div>
+              </div>
+            ))}
+          </div>
         ) : (
           <>
             {recipes.length === 0 ? (

@@ -237,3 +237,32 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+.recipe-detail .skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+.recipe-detail .skeleton-title {
+  width: 60%;
+  height: 20px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.recipe-detail .skeleton-image {
+  width: 100%;
+  height: 200px;
+  background: #ccc;
+  border-radius: 5px;
+}
+
+.recipe-detail .skeleton-text {
+  width: 80%;
+  height: 15px;
+  background: #ddd;
+  border-radius: 5px;
+}

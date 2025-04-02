@@ -3,6 +3,16 @@ import { getSavedRecipes, removeRecipe, updateRecipeOrder } from "../utils/api";
 import DraggableRecipeCard from "../components/DraggableRecipeCard";
 import "../styles/SavedRecipes.css";
 
+const SkeletonLoader = () => {
+  return (
+    <div className="skeleton-loader">
+      {Array.from({ length: 3 }).map((_, index) => (
+        <div key={index} className="skeleton-card"></div>
+      ))}
+    </div>
+  );
+};
+
 const SavedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,11 +69,9 @@ const SavedRecipes = () => {
     }
 
     const newRecipes = [...recipes];
-
     const draggedRecipe = newRecipes[draggedIndex];
 
     newRecipes.splice(draggedIndex, 1);
-
     newRecipes.splice(targetIndex, 0, draggedRecipe);
 
     const reorderedRecipes = newRecipes.map((recipe, index) => ({
@@ -72,7 +80,6 @@ const SavedRecipes = () => {
     }));
 
     setRecipes(reorderedRecipes);
-
     setDraggedIndex(null);
     setTargetIndex(null);
 
@@ -103,7 +110,7 @@ const SavedRecipes = () => {
       {error && <div className="error-message">{error}</div>}
 
       {loading ? (
-        <div className="loading">Loading saved recipes...</div>
+        <SkeletonLoader />
       ) : (
         <>
           {recipes.length === 0 ? (

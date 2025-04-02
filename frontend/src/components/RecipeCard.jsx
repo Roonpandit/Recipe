@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import "../styles/RecipeCard.css";
 
 const RecipeCard = ({ recipe, onSave, isSaved }) => {
   const { id, title, image, summary } = recipe;
+  const [isLoading, setIsLoading] = useState(true);
 
   const cleanSummary = summary ? summary.replace(/<\/?[^>]+(>|$)/g, "") : "";
 
   return (
     <div className="recipe-card">
       <div className="recipe-image">
-        <img src={image} alt={title} />
+        {isLoading && <div className="skeleton-loader"></div>}
+        <img
+          src={image}
+          alt={title}
+          onLoad={() => setIsLoading(false)}
+          style={{ display: isLoading ? "none" : "block" }}
+        />
       </div>
       <div className="recipe-content">
         <h3 className="recipe-title">{title}</h3>

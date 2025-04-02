@@ -13,35 +13,28 @@ const RecipeDetail = () => {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetchRecipeDetails();
-    checkIfSaved();
+    const fetchData = async () => {
+      setLoading(true);
+      setError("");
+
+      try {
+        const recipeData = await getRecipeById(id);
+        setRecipe(recipeData);
+
+        // Check if recipe is saved
+        const savedRecipes = await getSavedRecipes();
+        const foundInSaved = savedRecipes.some((r) => r.recipeId === id);
+        setIsSaved(foundInSaved);
+      } catch (error) {
+        setError("Failed to fetch recipe details. Please try again later.");
+        console.error("Error fetching recipe:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [id]);
-
-  const fetchRecipeDetails = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const recipeData = await getRecipeById(id);
-      setRecipe(recipeData);
-    } catch (error) {
-      setError("Failed to fetch recipe details. Please try again later.");
-      console.error("Error fetching recipe details:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const checkIfSaved = async () => {
-    try {
-      const savedRecipes = await getSavedRecipes();
-      const isSavedRecipe = savedRecipes.some(
-        (recipe) => recipe.recipeId === id
-      );
-      setIsSaved(isSavedRecipe);
-    } catch (error) {
-      console.error("Error checking saved status:", error);
-    }
-  };
 
   const handleSaveRecipe = async () => {
     if (isSaved || saving) return;
@@ -63,11 +56,19 @@ const RecipeDetail = () => {
   };
 
   const goBack = () => {
-    navigate(-1);
+    navigate(isSaved ? "/saved-recipes" : "/");
   };
 
   if (loading) {
-    return <div className="loading">Loading recipe details...</div>;
+    return (
+      <div className="skeleton-loader">
+        <div className="skeleton-title"></div>
+        <div className="skeleton-image"></div>
+        <div className="skeleton-text"></div>
+        <div className="skeleton-text"></div>
+        <div className="skeleton-text"></div>
+      </div>
+    );
   }
 
   if (error) {
@@ -110,7 +111,7 @@ const RecipeDetail = () => {
             <p>
               <strong>Servings:</strong> {recipe.servings}
             </p>
-            {recipe.dishTypes && recipe.dishTypes.length > 0 && (
+            {recipe.dishTypes?.length > 0 && (
               <p>
                 <strong>Dish Type:</strong> {recipe.dishTypes.join(", ")}
               </p>
@@ -128,10 +129,9 @@ const RecipeDetail = () => {
         <div className="ingredients">
           <h2>Ingredients</h2>
           <ul>
-            {recipe.extendedIngredients &&
-              recipe.extendedIngredients.map((ingredient) => (
-                <li key={ingredient.id}>{ingredient.original}</li>
-              ))}
+            {recipe.extendedIngredients?.map((ingredient, index) => (
+              <li key={`${ingredient.id}-${index}`}>{ingredient.original}</li>
+            ))}
           </ul>
         </div>
 
@@ -142,20 +142,19 @@ const RecipeDetail = () => {
           </div>
         )}
 
-        {recipe.analyzedInstructions &&
-          recipe.analyzedInstructions.length > 0 && (
-            <div className="step-by-step">
-              <h2>Step by Step</h2>
-              <ol>
-                {recipe.analyzedInstructions[0].steps.map((step) => (
-                  <li key={step.number}>
-                    <span className="step-number">{step.number}</span>
-                    <span className="step-description">{step.step}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
-          )}
+        {recipe.analyzedInstructions?.length > 0 && (
+          <div className="step-by-step">
+            <h2>Step by Step</h2>
+            <ol>
+              {recipe.analyzedInstructions[0].steps.map((step) => (
+                <li key={step.number}>
+                  <span className="step-number">{step.number}</span>
+                  <span className="step-description">{step.step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
 
         {recipe.nutrition && (
           <div className="nutrition">

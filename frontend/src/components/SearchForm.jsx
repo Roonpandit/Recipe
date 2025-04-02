@@ -64,34 +64,39 @@ const typeOptions = [
 const SearchForm = ({ onSearch }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({ cuisine: "", diet: "", type: "" });
-  const [searchResults, setSearchResults] = useState(null);
+  const [loading, setLoading] = useState("");
 
-  const handleQueryChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
+  const handleQueryChange = (e) => setSearchQuery(e.target.value);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSearch = (e) => {
+  const handleSearch = async (e) => {
     e.preventDefault();
-    onSearch({ query: searchQuery });
+    setLoading("Searching...");
+    await onSearch({ query: searchQuery });
+    setLoading("");
   };
 
-  const handleApplyFilters = () => {
-    onSearch({ query: searchQuery, ...filters });
+  const handleApplyFilters = async () => {
+    setLoading("Applying filters...");
+    await onSearch({ query: searchQuery, ...filters });
+    setLoading("");
   };
 
-  const handleClear = () => {
+  const handleClear = async () => {
+    setLoading("Clearing filters...");
     setFilters({ cuisine: "", diet: "", type: "" });
-    onSearch({ query: searchQuery, cuisine: "", diet: "", type: "" });
+    await onSearch({ query: searchQuery, cuisine: "", diet: "", type: "" });
+    setLoading("");
   };
 
   return (
     <div className="search-form-container">
       <h2>Find a Recipe</h2>
+      {loading && <div className="loading-message">{loading}</div>}
       <form className="search-form" onSubmit={handleSearch}>
         <div className="search-main">
           <input
@@ -102,8 +107,12 @@ const SearchForm = ({ onSearch }) => {
             placeholder="Search recipes..."
             className="search-input"
           />
-          <button type="submit" className="search-btn">
-            Search
+          <button
+            type="submit"
+            className="search-btn"
+            disabled={Boolean(loading)}
+          >
+            {loading === "Searching..." ? "Searching..." : "Search"}
           </button>
         </div>
 
@@ -163,11 +172,21 @@ const SearchForm = ({ onSearch }) => {
             type="button"
             className="clear-btn"
             onClick={handleApplyFilters}
+            disabled={Boolean(loading)}
           >
-            Apply Filters
+            {loading === "Applying filters..."
+              ? "Applying..."
+              : "Apply Filters"}
           </button>
-          <button type="button" className="clear-btn" onClick={handleClear}>
-            Clear Filters
+          <button
+            type="button"
+            className="clear-btn"
+            onClick={handleClear}
+            disabled={Boolean(loading)}
+          >
+            {loading === "Clearing filters..."
+              ? "Clearing..."
+              : "Clear Filters"}
           </button>
         </div>
       </form>
